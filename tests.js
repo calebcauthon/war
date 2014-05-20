@@ -33,7 +33,13 @@ test("cards transfer to player 1", function() {
 
 	full_deck.add_card({ suit: 'Diamonds', rank: 'Ace' });
 
-	ok(player_1_cards.count == 0);
-	cards.deal(1, player_1_cards());
-	ok(player_1_cards.count == 1);	
+	ok(player_1_cards.count() == 0);
+	full_deck.deal(1, player_1_cards);
+	ok(player_1_cards.count() == 1);	
+	ok(full_deck.count() == 0);
+});
+
+test("creating a full deck creates 52 proper cards", function() {
+	var full_deck = new FullDeckOfCards();	
+	ok(full_deck.count() == 52)
 });
