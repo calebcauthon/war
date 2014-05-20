@@ -29,6 +29,17 @@ var Cards = function() {
 		},	
 		count: function() {
 			return cards.length;
+		},
+		peek_at_top_card: function() {
+			return cards[cards.length-1];
+		},
+		shuffle: function() {
+			var shuffled_cards = [];
+			while(cards.length > 0) {
+				var random_card = cards.splice(Math.floor(Math.random() * (cards.length-1)), 1);
+				shuffled_cards.push(random_card);
+			};
+			cards = shuffled_cards;
 		}
 	};
 };

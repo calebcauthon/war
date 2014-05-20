@@ -43,3 +43,31 @@ test("creating a full deck creates 52 proper cards", function() {
 	var full_deck = new FullDeckOfCards();	
 	ok(full_deck.count() == 52)
 });
+
+test("cards are dealt from the top", function() {
+	var small_deck = new Cards();
+	small_deck.add_card({ suit: 'Diamonds', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Clubs', rank: 'Six' });
+	
+	var other_cards = new Cards();
+	small_deck.deal(1, other_cards);
+
+	ok(small_deck.peek_at_top_card().suit == 'Clubs');
+});
+
+test("cards get shuffled", function() {
+	var small_deck = new Cards();
+	small_deck.add_card({ suit: 'Diamonds', rank: 'Seven' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Clubs', rank: 'Nine' });
+
+	ok(small_deck.peek_at_top_card().suit == 'Clubs');
+	ok(small_deck.peek_at_top_card().rank == 'Nine');
+	ok(small_deck.count() == 3);
+
+	small_deck.shuffle();
+
+	ok(small_deck.peek_at_top_card().suit != 'Clubs');
+	ok(small_deck.peek_at_top_card().rank != 'Nine');
+	ok(small_deck.count() == 3);
+});
