@@ -16,6 +16,28 @@ var GameOfWar = function() {
 	};
 };
 
+var Card = function(details) {
+	var rank_values = {};
+	rank_values['Ace'] = 13;
+	rank_values['King'] = 12;
+	rank_values['Queen'] = 11;
+	rank_values['Jack'] = 10;
+	rank_values['Ten'] = 9;
+	rank_values['Nine'] = 8;
+	rank_values['Eight'] = 7;
+	rank_values['Seven'] = 6;
+	rank_values['Six'] = 5;
+	rank_values['Five'] = 4;
+	rank_values['Four'] = 3;
+	rank_values['Three'] = 2;
+	rank_values['Two'] = 1;
+
+	var attributes = details;
+	attributes.value = rank_values[details.rank];
+
+	return attributes;
+};
+
 var Cards = function() {
 	var cards = [];
 
@@ -43,6 +65,7 @@ var Cards = function() {
 		}
 	};
 };
+
 
 var FullDeckOfCards = function() {	
 	var self = Cards();

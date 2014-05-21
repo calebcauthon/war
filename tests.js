@@ -71,3 +71,37 @@ test("cards get shuffled", function() {
 	ok(small_deck.peek_at_top_card().rank != 'Nine');
 	ok(small_deck.count() == 3);
 });
+
+test("aces beat kings", function() {
+	var ace = new Card({ suit: 'Spades', rank: 'Ace' });
+	var king = new Card({ suit: 'Diamonds', rank: 'King' });
+
+	ok(ace.value > king.value);
+});
+
+test("kings beat queens, and so on..", function() {
+	var king = new Card({ rank: 'King' });
+	var queen = new Card({ rank: 'Queen' });
+	var jack = new Card({ rank: 'Jack' });
+	var ten = new Card({ rank: 'Ten' });
+	var nine = new Card({ rank: 'Nine' });
+	var eight = new Card({ rank: 'Eight' });
+	var seven = new Card({ rank: 'Seven' });
+	var six = new Card({ rank: 'Six' });
+	var five = new Card({ rank: 'Five' });
+	var four = new Card({ rank: 'Four' });
+	var three = new Card({ rank: 'Three' });
+	var two = new Card({ rank: 'Two' });
+
+	ok(king.value > queen.value);
+	ok(queen.value > jack.value);
+	ok(jack.value > ten.value);
+	ok(ten.value > nine.value);
+	ok(nine.value > eight.value);
+	ok(eight.value > seven.value);
+	ok(seven.value > six.value);
+	ok(six.value > five.value);
+	ok(five.value > four.value);
+	ok(four.value > three.value);
+	ok(three.value > two.value);
+});
