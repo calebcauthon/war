@@ -1,17 +1,26 @@
 var GameOfWar = function() {
-	var player_1_cards_in_hand = 26;
-	var player_2_cards_in_hand = 26;
+	var starting_deck = new FullDeckOfCards();
+	
+	var decks = [new Cards(), new Cards()];
+	
+	var deck_index = 0;
+	while(starting_deck.count() > 0) {
+		starting_deck.deal(1, decks[deck_index]);
+		deck_index++;
+
+		if(!decks[deck_index])
+			deck_index = 0;
+	};
+window.decks = decks;
 
 	return {
-		player_1_cards: function() { return player_1_cards_in_hand; },
-		player_2_cards: function() { return player_2_cards_in_hand; },
+		player_1_cards: function() { return decks[0].count(); },
+		player_2_cards: function() { return decks[1].count(); },
 		flip_player_1_card: function() {
-			player_1_cards_in_hand--;
-			return player_1_cards_in_hand;
+			decks[0].deal(1, new Cards());
 		},
 		flip_player_2_card: function() {
-			player_2_cards_in_hand--;
-			return player_2_cards_in_hand;
+			decks[1].deal(1, new Cards());
 		}
 	};
 };
@@ -83,3 +92,19 @@ var FullDeckOfCards = function() {
 };
 
 FullDeckOfCards.prototype = new Cards();
+
+function WarController($scope) {
+	var game;
+
+	$scope.start_game = function() {
+		game = new GameOfWar();
+	};
+
+	$scope.player_1_cards_remaining = function() {
+		if(game && game.player_1_cards()) {
+			return game.player_1_cards();
+		} else
+			return 0;
+	};
+};
+

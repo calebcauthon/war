@@ -1,4 +1,10 @@
-<button>Start a game</button>
+<!doctype html>
+<html ng-app>
+
+<body>
+<div ng-controller="WarController">
+
+<button ng-click="start_game()">Start a game</button>
 <button>Flip player 1 card</button>
 <button>Flip player 2 card</button>
 
@@ -12,7 +18,7 @@
 	<tbody>
 		<tr>
 			<td># of cards left</td>
-			<td>0</td>
+			<td>{{player_1_cards_remaining()}}</td>
 			<td>0</td>
 		</tr>
 		<tr>
@@ -22,9 +28,14 @@
 		</tr>
 	</tbody>
 </table>
+</div>
+</body>
+</html>
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="war.js"></script>
 <script type="text/javascript">
-
+	$(document).ready(function() {
+	});
 </script>
