@@ -15,6 +15,13 @@ test("player 1 can flip a card to start", function() {
 	ok(game.player_1_cards() == 25);
 });
 
+test("card flip method returns card flipped", function() {
+	var game = new GameOfWar();
+	var card = game.flip_player_1_card();
+	ok(card.suit);
+	ok(card.value);
+});
+
 test("player 2 can flip a card to start", function() {
 	var game = new GameOfWar();
 	game.flip_player_2_card();
@@ -104,4 +111,31 @@ test("kings beat queens, and so on..", function() {
 	ok(five.value > four.value);
 	ok(four.value > three.value);
 	ok(three.value > two.value);
+});
+
+test("score is calculated after both players flip a card", function() {
+	var game = new GameOfWar();
+	ok(game.player_1_score() == 0);
+	ok(game.player_2_score() == 0);
+	
+	game.flip_player_1_card();
+	game.flip_player_2_card();
+	
+	ok(game.player_1_score() + game.player_2_score() > 0);
+});
+
+test("can only flip one card at a time", function() {
+	var game = new GameOfWar();
+	ok(game.player_1_cards() == 26);
+	game.flip_player_1_card();
+	game.flip_player_1_card();
+	ok(game.player_1_cards() == 25);
+});
+
+test("can only flip one card at a time", function() {
+	var game = new GameOfWar();
+	ok(game.player_2_cards() == 26);
+	game.flip_player_2_card();
+	game.flip_player_2_card();
+	ok(game.player_2_cards() == 25);
 });

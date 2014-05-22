@@ -5,8 +5,8 @@
 <div ng-controller="WarController">
 
 <button ng-click="start_game()">Start a game</button>
-<button>Flip player 1 card</button>
-<button>Flip player 2 card</button>
+<button ng-click="flip_player_1_card();">Flip player 1 card</button>
+<button ng-click="flip_player_2_card();">Flip player 2 card</button>
 
 <table>
 	<thead>
@@ -19,12 +19,13 @@
 		<tr>
 			<td># of cards left</td>
 			<td>{{player_1_cards_remaining()}}</td>
-			<td>0</td>
+			<td>{{player_2_cards_remaining()}}</td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>Score</td>
-			<td>0</td>
-			<td>0</td>
+			<td>{{player_1_score()}}</td>
+			<td>{{player_2_score()}}</td>
 		</tr>
 	</tbody>
 </table>
@@ -36,6 +37,4 @@
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="war.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-	});
 </script>
