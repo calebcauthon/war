@@ -149,3 +149,11 @@ test("more cards can be flipped after the score is tallied", function() {
 	ok((game.player_1_score() + game.player_2_score()) == 1);
 	ok(game.player_1_cards() == 24);
 });
+
+test("last card played is kept track of", function() {
+	var game = new GameOfWar();
+	game.flip_player_1_card();
+	var card = game.flip_player_2_card();
+	ok(card != false);
+	
+});

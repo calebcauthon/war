@@ -52,10 +52,11 @@ var GameOfWar = function() {
 			decks[1].deal(1, discard_deck);
 			
 			current_cards[1] = discard_deck.peek_at_top_card(); 
+			var card = current_cards[1];
 
 			calculate_score();
 
-			return current_cards[1];
+			return card;
 		}
 	};
 };
@@ -136,11 +137,21 @@ function WarController($scope) {
 	};
 
 	$scope.flip_player_1_card = function() {
-		return game.flip_player_1_card();
+		var card = game.flip_player_1_card();
+		if(!card.suit)
+			return;
+
+		$scope.player_1_card = card.rank + " of " + card.suit; 
+		return $scope.player_1_card; 			
 	};
 
 	$scope.flip_player_2_card = function() {
-		return game.flip_player_2_card();
+		var card = game.flip_player_2_card();
+		
+		if(!card.suit)
+			return;
+		$scope.player_2_card = card.rank + " of " + card.suit; 
+		return $scope.player_2_card; 			
 	};
 	
 	$scope.player_1_score = function() {
