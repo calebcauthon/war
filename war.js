@@ -1,5 +1,6 @@
 var GameOfWar = function() {
 	var starting_deck = new FullDeckOfCards();
+	starting_deck.shuffle();
 	
 	var decks = [new Cards(), new Cards()];
 	var scores = [0, 0];
@@ -103,8 +104,11 @@ var Cards = function() {
 		shuffle: function() {
 			var shuffled_cards = [];
 			while(cards.length > 0) {
-				var random_card = cards.splice(Math.floor(Math.random() * (cards.length-1)), 1);
-				shuffled_cards.push(random_card);
+				var random_number = Math.random();
+				var max = cards.length;
+				var index = Math.floor(random_number * max);
+				var random_card = cards.splice(index, 1);
+				shuffled_cards.push(random_card[0]);
 			};
 			cards = shuffled_cards;
 		}

@@ -66,17 +66,29 @@ test("cards get shuffled", function() {
 	var small_deck = new Cards();
 	small_deck.add_card({ suit: 'Diamonds', rank: 'Seven' });
 	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
+	small_deck.add_card({ suit: 'Spades', rank: 'Ten' });
 	small_deck.add_card({ suit: 'Clubs', rank: 'Nine' });
 
 	ok(small_deck.peek_at_top_card().suit == 'Clubs');
 	ok(small_deck.peek_at_top_card().rank == 'Nine');
-	ok(small_deck.count() == 3);
-
+	ok(small_deck.count() == 15)
+	
 	small_deck.shuffle();
-
+console.log(small_deck.peek_at_top_card());
 	ok(small_deck.peek_at_top_card().suit != 'Clubs');
 	ok(small_deck.peek_at_top_card().rank != 'Nine');
-	ok(small_deck.count() == 3);
+	ok(small_deck.count() == 15);
 });
 
 test("aces beat kings", function() {
@@ -118,8 +130,8 @@ test("score is calculated after both players flip a card", function() {
 	ok(game.player_1_score() == 0);
 	ok(game.player_2_score() == 0);
 	
-	game.flip_player_1_card();
-	game.flip_player_2_card();
+	console.log('1', game.flip_player_1_card());
+	console.log('2', game.flip_player_2_card());
 	
 	ok(game.player_1_score() + game.player_2_score() > 0);
 });
@@ -142,8 +154,8 @@ test("can only flip one card at a time", function() {
 
 test("more cards can be flipped after the score is tallied", function() {
 	var game = new GameOfWar();
-	game.flip_player_1_card();
-	game.flip_player_2_card();
+	console.log(game.flip_player_1_card());
+	console.log(game.flip_player_2_card());
 	
 	game.flip_player_1_card();
 	ok((game.player_1_score() + game.player_2_score()) == 1);
@@ -156,4 +168,11 @@ test("last card played is kept track of", function() {
 	var card = game.flip_player_2_card();
 	ok(card != false);
 	
+});
+
+test("starting deck is shuffled", function() {
+	var game =  new GameOfWar();
+	var card1 = game.flip_player_1_card();
+	ok(card1.suit != 'Diamonds');
+	ok(card1.rank != 'Ace');
 });
