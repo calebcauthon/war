@@ -159,11 +159,17 @@ function WarController($scope) {
 	};
 	
 	$scope.player_1_score = function() {
-		return game.player_1_score();
+		if(game)
+			return game.player_1_score();
+		else 
+			return 0;
 	};
 
 	$scope.player_2_score = function() {
-		return game.player_2_score();
+		if(game)
+			return game.player_2_score();
+		else
+			return 0;
 	};
 
 	$scope.player_2_cards_remaining = function() {
