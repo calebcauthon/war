@@ -139,3 +139,13 @@ test("can only flip one card at a time", function() {
 	game.flip_player_2_card();
 	ok(game.player_2_cards() == 25);
 });
+
+test("more cards can be flipped after the score is tallied", function() {
+	var game = new GameOfWar();
+	game.flip_player_1_card();
+	game.flip_player_2_card();
+	
+	game.flip_player_1_card();
+	ok((game.player_1_score() + game.player_2_score()) == 1);
+	ok(game.player_1_cards() == 24);
+});

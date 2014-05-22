@@ -20,6 +20,8 @@ var GameOfWar = function() {
 				scores[0]++;
 			else if(current_cards[0].value < current_cards[1].value)
 				scores[1]++;
+
+			current_cards = [false, false];
 		} else {
 			return;
 		};
